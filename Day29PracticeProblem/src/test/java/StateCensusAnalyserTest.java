@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.IOException;
-import java.util.List;
 
 public class StateCensusAnalyserTest {
     private StateCensusAnalyser analyser;
@@ -14,13 +12,11 @@ public class StateCensusAnalyserTest {
     }
 
     @Test
-    public void testNumberOfRecordsInCSV() throws IOException {
-        String testFilePath = "IndianStateCensus.csv";
-        List<CSVStateCensus> data = StateCensusAnalyser.loadStateCensusData(testFilePath);
+    public void testIncorrectCSVDataException() {
+        String testFilePath = "IncorrectStateCensus.csv";
 
-        // Define your expected number of records
-        int expectedRecordCount = 10; // Replace with the actual expected count
-
-        assertEquals(expectedRecordCount, data.size());
+        assertThrows(IncorrectCSVDataException.class, () -> {
+            analyser.loadStateCensusData(testFilePath);
+        });
     }
 }
