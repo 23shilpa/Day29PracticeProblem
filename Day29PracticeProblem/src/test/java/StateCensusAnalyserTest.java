@@ -1,3 +1,4 @@
+import com.bl.IncorrectCSVDataTypeException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,10 +13,10 @@ public class StateCensusAnalyserTest {
     }
 
     @Test
-    public void testIncorrectCSVDataException() {
-        String testFilePath = "IncorrectStateCensus.csv";
+    public void testIncorrectCSVDataTypeException() {
+        String testFilePath = "IncorrectTypeStateCensus.csv";
 
-        assertThrows(IncorrectCSVDataException.class, () -> {
+        assertThrows(IncorrectCSVDataTypeException.class, () -> {
             analyser.loadStateCensusData(testFilePath);
         });
     }
